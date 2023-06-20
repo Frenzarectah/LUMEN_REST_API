@@ -13,8 +13,13 @@
 |
 */
 
+
 $router->get('/', function () use ($router) {
-    return 'esempione';
+    echo '<h1>Welcome to FrenzAPI service</h1>
+          <h2>Login by the property endpoint to start!</h2>';
 });
+$router->get('/getprod','UserController@getUsers');
+
 
 $router->post('/login','Authcontroller@login');
+$router->post('/addUser','UserController@addUser');

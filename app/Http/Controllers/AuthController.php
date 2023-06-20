@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 class AuthController extends Controller
 {
@@ -23,7 +24,10 @@ class AuthController extends Controller
         ]);
         $login_credits = $request->only(['email','password']);
         $results = DB::select('Select * FROM users where password = ? AND email = ?',[$login_credits['password'],$login_credits['email']]);
-        if($results) return 'access granted!';
+        if($results){
+            DB::update("UPDATE `users` SET `isAuth` = '1' where email = ?",[$login_credits['email']]);
+            return 'access granted';
+        }
         else return 'access denied';
     }
     //
