@@ -14,12 +14,13 @@
 */
 
 
-$router->get('/', function () use ($router) {
+$router->get('/',['middleware' => ['example:ciao'], function () use ($router) {
     echo '<h1>Welcome to FrenzAPI service</h1>
           <h2>Login by the property endpoint to start!</h2>';
-});
-$router->get('/getprod','UserController@getUsers');
+}]);
+$router->get('/getUsers','UserController@getUsers');
 
 
 $router->post('/login','Authcontroller@login');
 $router->post('/addUser','UserController@addUser');
+$router->delete('/delUser','UserController@delUser');

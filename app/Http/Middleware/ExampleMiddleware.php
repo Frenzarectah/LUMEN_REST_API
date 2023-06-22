@@ -13,8 +13,9 @@ class ExampleMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next,$param1)
     {
+        echo("middleware attivo! {$param1}");
         return $next($request);
     }
 }
