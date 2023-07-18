@@ -11,9 +11,11 @@ class UserController extends Controller
     public function getUsers()
     {
         $utenti = User_::all();
+        echo("<ol>");
         foreach($utenti as $user){
-            echo("<u>{$user->name}<u></br>");
+            echo("<li>{$user->name}<li>");
         };
+        echo("</ol>");
     }
     public function addUser(Request $request)
     {
@@ -26,7 +28,7 @@ class UserController extends Controller
         ]);
 
         $user_insert = new User_;
-        $user_insert->id = $request->input('id');
+        //$user_insert->id = $request->input('id');
         $user_insert->name = $request->input('name');
         $user_insert->email = $request->input('email');
         $user_insert->password = $request->input('password');
@@ -48,4 +50,5 @@ class UserController extends Controller
             return'<h2> NOT AUTHORIZED TO DELETE</h2>';
         }
     }
+
 }
